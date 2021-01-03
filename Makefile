@@ -14,9 +14,12 @@ EXTRA_CFLAGS += -Wno-unused-label
 EXTRA_CFLAGS += -Wno-unused-parameter
 EXTRA_CFLAGS += -Wno-unused-function
 EXTRA_CFLAGS += -Wno-unused
-#EXTRA_CFLAGS += -Wno-uninitialized
-#EXTRA_CFLAGS += -Wno-error=date-time	# Fix compile error on gcc 4.9 and later
-
+EXTRA_CFLAGS += -Wno-uninitialized
+EXTRA_CFLAGS += -Wno-error=date-time	# Fix compile error on gcc 4.9 and later
+EXTRA_CFLAGS += -Wno-error
+EXTRA_CFLAGS += -Wunused
+EXTRA_CFLAGS += -Wno-error=unused
+EXTRA_CFLAGS += -Wno-incompatible-pointer-types
 EXTRA_CFLAGS += -I$(src)/include
 EXTRA_CFLAGS += -I$(src)/hal/phydm
 
@@ -368,7 +371,7 @@ ifeq ($(CONFIG_PLATFORM_I386_PC), y)
 EXTRA_CFLAGS += -DCONFIG_LITTLE_ENDIAN
 EXTRA_CFLAGS += -DCONFIG_IOCTL_CFG80211 -DRTW_USE_CFG80211_STA_EVENT
 SUBARCH := $(shell uname -m | sed -e s/i.86/i386/)
-ARCH ?= $(SUBARCH)
+ARCH = arm
 CROSS_COMPILE ?=
 KVER  := $(shell uname -r)
 KSRC := /lib/modules/$(KVER)/build
